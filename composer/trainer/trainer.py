@@ -286,7 +286,7 @@ def _distribute_and_get_random_seed(seed: Optional[int], device: Device):
     # to restore seeds when resuming form checkpoints, since only the
     # `rank_zero_seed` is stored on state.
     if seed < 0 or seed > reproducibility.MAX_SEED:
-        raise ValueError(f'Invalid seed: {seed}. It must be on [0; 2**32 - 1)')
+        warnings.warn(f'Invalid seed: {seed}. It must be on [0; 2**32 - 1)')
 
     # using int64 to prevent overflow
     rank_zero_seed = device.tensor_to_device(torch.tensor([seed], dtype=torch.int64))
