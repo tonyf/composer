@@ -157,8 +157,8 @@ def seed_all(seed: int):
     if seed < 0 or seed > MAX_SEED:
         warnings.warn(f'Seed {seed} is invalid. It must be on [0; 2^32 - 1]')
     log.info('Setting seed to %d', seed)
-    # random.seed(seed)
-    np.random.seed(seed)
+    random.seed(seed)
+    # np.random.seed(seed) # sorry
     torch.manual_seed(seed)
     # torch.manual_seed may call manual_seed_all but calling it again here
     # to make sure it gets called at least once
